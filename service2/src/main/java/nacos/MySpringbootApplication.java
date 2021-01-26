@@ -1,4 +1,4 @@
-package com.sgq.nacos;
+package nacos;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -19,26 +19,24 @@ public class MySpringbootApplication {
     public static void main(String[] args) {
         SpringApplication.run(MySpringbootApplication.class,args);
     }
-
-    @Value("${test.a}")
-    String a;
-    @Value("${test.b}")
-    String b;
-
     @Autowired
     ConfigurableApplicationContext applicationContext;
-
-    @GetMapping("/getConfig.do")
-    public String getConfig() {
-        return a ;
-    }
+//    @Value("${driver-class-name}")
+//    String driver_2;
 
     @GetMapping("/getAutoUpdateConfig.do")
-    public String getAutoUpdateConfig() {
+    public String getAutoUpdateConfig(){
+        String driver =  applicationContext.getEnvironment().getProperty("c2c.driver");
+        String url =  applicationContext.getEnvironment().getProperty("c2c.url");
+        String user =  applicationContext.getEnvironment().getProperty("c2c.username");
+        String password = applicationContext.getEnvironment().getProperty("c2c.password");
+        String name = applicationContext.getEnvironment().getProperty("common.name");
+        String age = applicationContext.getEnvironment().getProperty("common.age");
+        String address = applicationContext.getEnvironment().getProperty("common.address");
 
-
-            return applicationContext.getEnvironment().getProperty("test.a");
-
-
+        return driver+"->"+url+"->"+user+"->"+password+"||"+
+                name+"->"+age+"->"+address+"->";
     }
+
+
 }

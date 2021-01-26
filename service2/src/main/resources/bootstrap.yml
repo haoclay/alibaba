@@ -2,11 +2,50 @@ server:
   port: 55556
 spring:
   application:
-    name: service2
+    name: service2-mybatis
   cloud:
     nacos:
       config:
-        server-addr: localhost:8848
+        server-addr: localhost:8848,127.0.0.1:8849,localhost:8850
         group: DEFAULT_GROUP
         namespace: 434d8807-0a16-4291-a810-97bf0f92abfa
-        file-extension: yaml
+        file-extension: properties
+        extension-configs[0]:
+          data-id: ext-config-common01.properties
+          refresh: true # 配置修改后是否自动更新
+        extension-configs[1]:
+          data-id: ext-config-common02.properties
+          group: GLOBALE_GROUP
+        extension-configs[2]:
+          data-id: ext-config-common03.properties
+          group: REFRESH_GROUP
+          refresh: true
+
+
+
+
+#server:
+#  port: 55556 #启动端口 命令行注入
+#
+#spring:
+#  application:
+#    name: service2-mybatis
+#  cloud:
+#    nacos:
+#      config:
+#        #enabled: false #关闭配置
+#        server-addr: 127.0.0.1:8848 # 配置中心地址
+#        file-extension: properties #dataid 的名称就是application的name加file-extension   service1.yaml
+#        namespace: 434d8807-0a16-4291-a810-97bf0f92abfa # 开发环境  指定 具体的namespace
+#        group: DEFAULT_GROUP # 测试组
+#        #        shared-dataids: ext-config-common01.properties,ext-config-common02.properties,ext-config-common03.properties
+#        #        refreshable-dataids: ext-config-common01.properties
+#        ext-config[0]:
+#          data-id: service2-driver.properties
+#        ext-config[1]:
+#          data-id: service2-url.properties
+#          group: common
+#        ext-config[2]:
+#          data-id: service2-username.properties
+#          group: DEFAULT_GROUP
+#          refresh: true  #动态刷新配置
