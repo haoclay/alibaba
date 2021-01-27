@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import sgq.client.MyService;
 
+import java.util.List;
+
 /**
  * Author : sgq
  * Date : 2021/1/27 17:23
@@ -18,5 +20,10 @@ public class ConsumerController {
     @GetMapping(value = {"/service","/service.do"})
     public String service(){
        return "Consumer_Service" + "||" + myService.service();
+    }
+
+    @GetMapping(value = {"/serviceForPerson"})
+    public List<Object> serviceForPerson(){
+      return  myService.findAllPerson();
     }
 }
