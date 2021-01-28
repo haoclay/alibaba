@@ -1,0 +1,33 @@
+server:
+  port: ${port:55571}
+  servlet:
+    context-path: /application1
+spring:
+  application:
+    name: service-1-server
+  cloud:
+    nacos:
+      config:
+        server-addr: localhost:8848,127.0.0.1:8849
+        group: SERVER
+        namespace: 434d8807-0a16-4291-a810-97bf0f92abfa
+        file-extension: yaml
+      discovery:
+        server-addr: localhost:8848,127.0.0.1:8849
+        namespace: 434d8807-0a16-4291-a810-97bf0f92abfa
+        cluster-name: DEFAULT
+dubbo:
+  scan:
+  #dubbo 服务扫描基准包
+    base-packages: com.sgq.service
+  protocol:
+  #dubbo协议
+    name: dubbo
+  #dubbo协议端口
+    port: ${dubbo_port:20881}
+  registry:
+    address: nacos://127.0.0.1:8848
+  application:
+    qos-enable: false #dubbo运维服务是否开启
+  consumer:
+    check: false #启动时就否检查依赖的服务

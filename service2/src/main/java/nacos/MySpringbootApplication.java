@@ -33,9 +33,10 @@ public class MySpringbootApplication {
         String name = applicationContext.getEnvironment().getProperty("common.name");
         String age = applicationContext.getEnvironment().getProperty("common.age");
         String address = applicationContext.getEnvironment().getProperty("common.address");
+        String pp = applicationContext.getEnvironment().getProperty("common.pp");
 
         return driver+"->"+url+"->"+user+"->"+password+"||"+
-                name+"->"+age+"->"+address+"->";
+                name+"->"+age+"->"+address+"->"+pp;
     }
 
 

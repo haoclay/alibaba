@@ -19,7 +19,7 @@ public class PersonController {
     @GetMapping("/findAllPerson")
     @ResponseBody
     public List<Person> findAllPerson(){
-
+        System.out.println("查询一次");
         return personMapper.selectAll();
     }
 

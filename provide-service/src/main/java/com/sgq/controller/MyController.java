@@ -12,6 +12,7 @@ public class MyController {
 
     @GetMapping(value = {"/service","/service.do"})
     public String service(){
+
         return "from_provider";
     }
 
