@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sgq.dao.EmployeeMapper">
+    <resultMap id="BaseMap" type="com.sgq.pojo.Employee">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <id column="last_name" property="lastName" jdbcType="VARCHAR"/>
+        <id column="email" property="email" jdbcType="VARCHAR"/>
+        <id column="gender" property="gender" jdbcType="VARCHAR"/>
+        <id column="age" property="age" jdbcType="INTEGER"/>
+        <id column="department_id" property="departmentId" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="all">
+        id,
+        last_name,
+        email,
+        gender,
+        age,
+        department_id
+    </sql>
+
+
+   <select id="selectById" resultMap="BaseMap" parameterType="java.lang.Integer">
+       select * from employee where id  = #{id}
+   </select>
+
+    <select id="selectByLike" resultMap="BaseMap" parameterType="java.lang.String">
+        select <include refid="all"/>
+        from employee
+        where last_name like concat('%',concat(#{name},'%'));
+    </select>
+</mapper>

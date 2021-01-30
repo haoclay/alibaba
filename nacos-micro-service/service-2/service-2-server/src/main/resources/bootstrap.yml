@@ -1,10 +1,16 @@
 server:
-  port: ${port:55571}
+  port: ${port:55572}
   servlet:
-    context-path: /service1
+    context-path: /service2
 spring:
   application:
-    name: service-1-server
+    name: service-2-server
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/homework?characterEncoding=utf-8&useSSL=false&serverTimezone=GMT%2B8
+    username: root
+    password: 123456
   cloud:
     nacos:
       config:
@@ -16,6 +22,7 @@ spring:
         server-addr: localhost:8848,127.0.0.1:8849
         namespace: 434d8807-0a16-4291-a810-97bf0f92abfa
         cluster-name: DEFAULT
+
 dubbo:
   scan:
   #dubbo 服务扫描基准包
@@ -24,10 +31,14 @@ dubbo:
   #dubbo协议
     name: dubbo
   #dubbo协议端口
-    port: ${dubbo_port:20881}
+    port: ${dubbo_port:20882}
   registry:
-    address: nacos://127.0.0.1:8848
+    address: nacos://127.0.0.1:8848,127.0.0.1:8849
   application:
     qos-enable: false #dubbo运维服务是否开启
   consumer:
     check: false #启动时就否检查依赖的服务
+
+#mybatis-plus
+mybatis-plus:
+  mapper-locations: classpath:/mapper/*.xml
