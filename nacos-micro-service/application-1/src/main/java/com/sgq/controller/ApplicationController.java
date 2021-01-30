@@ -35,4 +35,10 @@ public class ApplicationController {
     public List<Employee> findEmployeeByName(@RequestParam String name){
         return  secondService.findEmployeeByLike(name);
     }
+
+    @RequestMapping(value = "/findEmployeeByNameAndEmail")
+    public List<Employee> findEmployeeByNameAndEmail(@RequestParam String name,
+                                                     @RequestParam String email){
+        return  secondService.findByManyProperties(name,email);
+    }
 }

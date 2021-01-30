@@ -23,4 +23,9 @@ public class SecondServiceImpl implements SecondService {
     public List<Employee> findEmployeeByLike(String name) {
         return employeeService.findByLike(name);
     }
+
+    @Override
+    public List<Employee> findByManyProperties(String name, String email) {
+        return employeeService.findByManyProperties(name,email);
+    }
 }
