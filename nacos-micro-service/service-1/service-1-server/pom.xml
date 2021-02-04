@@ -24,14 +24,6 @@
              <version>2.2.1.RELEASE</version>
          </dependency>
 
-         <dependency>
-             <groupId>com.sgq</groupId>
-             <artifactId>service-2-api</artifactId>
-             <version>0.0.1-SNAPSHOT</version>
-         </dependency>
-
-
-
 
      </dependencies>
 

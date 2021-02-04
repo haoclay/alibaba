@@ -4,6 +4,8 @@ package com.sgq.controller;
 
 import com.sgq.api.FirstService;
 import com.sgq.api.SecondService;
+import com.sgq.api.ThirdService;
+import com.sgq.pojo.Animal;
 import com.sgq.pojo.Employee;
 import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +20,8 @@ public class ApplicationController {
     private FirstService firstService;
     @Reference
     private SecondService secondService;
+    @Reference
+    private ThirdService thirdService;
 
     @RequestMapping(value = "/doService")
     public String doService(){
@@ -41,4 +45,20 @@ public class ApplicationController {
                                                      @RequestParam String email){
         return  secondService.findByManyProperties(name,email);
     }
+
+    @RequestMapping(value = "/findAllAnimal")
+    public List<Animal> findAllAnimal(){
+        return  thirdService.findAll();
+    }
+
+    @RequestMapping(value = "/findAnimalByLike")
+    public List<Animal> findAnimalByLike(@RequestParam String name,@RequestParam Integer age){
+        return  thirdService.findByLike(name,age);
+    }
+
+    @RequestMapping(value = "/findAnimalByDefault")
+    public List<Animal> findAnimalByDefault(@RequestParam String name,@RequestParam Integer age){
+        return  thirdService.findByLikeDefault(name,age);
+    }
+
 }

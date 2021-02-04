@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sgq.dao.AnimalMapper">
+    <resultMap id="BaseMap" type="com.sgq.pojo.Animal">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <id column="name" property="name" jdbcType="VARCHAR"/>
+        <id column="age" property="age" jdbcType="INTEGER"/>
+
+    </resultMap>
+
+    <sql id="all">
+        id,
+        name,
+        age
+
+    </sql>
+
+
+
+
+    <select id="selectLikePlus" resultMap="BaseMap" parameterType="java.util.Map">
+        select <include refid="all"/>
+        from animal
+        <where>
+            <if test="name !=null">
+                name like concat('%',concat(#{name},'%')) or
+            </if>
+            <if test="age!=null">
+                age > #{age}
+            </if>
+             and 1 = 1;
+        </where>
+
+
+    </select>
+</mapper>
