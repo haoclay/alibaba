@@ -3,6 +3,7 @@ package com.sgq.controller;
 
 
 import com.sgq.api.FirstService;
+import com.sgq.api.FourthService;
 import com.sgq.api.SecondService;
 import com.sgq.api.ThirdService;
 import com.sgq.pojo.Animal;
@@ -12,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class ApplicationController {
@@ -22,6 +25,8 @@ public class ApplicationController {
     private SecondService secondService;
     @Reference
     private ThirdService thirdService;
+    @Reference
+    private FourthService fourthService;
 
     @RequestMapping(value = "/doService")
     public String doService(){
@@ -59,6 +64,18 @@ public class ApplicationController {
     @RequestMapping(value = "/findAnimalByDefault")
     public List<Animal> findAnimalByDefault(@RequestParam String name,@RequestParam Integer age){
         return  thirdService.findByLikeDefault(name,age);
+    }
+
+    @RequestMapping(value = "/sendEmailByQQ")
+    public void sendEmailByQQ(@RequestParam String mail_target,
+                              @RequestParam String mail_title,
+                              @RequestParam String mail_content ){
+        Map<String,String> map = new HashMap(){{
+            put("mail_target",mail_target);
+            put("mail_title",mail_title);
+            put("mail_content",mail_content);
+        }};
+        fourthService.sendEmailByQQ(map);
     }
 
 }

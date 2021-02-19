@@ -5,6 +5,16 @@ server:
 spring:
   application:
     name: application-1
+  #thymeleaf
+  thymeleaf:
+    servlet:
+      content-type: text/html
+    prefix: classpath:/templates/
+    suffix: .html
+    encoding: UTF-8
+    cache: false
+
+
   cloud:
     nacos:
       config:

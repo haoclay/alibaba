@@ -1,6 +1,11 @@
 server:
   port: 55580
 spring:
+  http:
+    encoding:
+      charset: gb2312
+      enabled: true
+      force: true
   application:
     name: api-gateway
   main:
