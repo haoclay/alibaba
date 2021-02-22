@@ -5,7 +5,6 @@ import com.google.zxing.EncodeHintType;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.client.j2se.MatrixToImageWriter;
 import com.google.zxing.common.BitMatrix;
-//import com.hechuan.alltest.all.encodeAndDecode.base64.Base64Util;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -20,48 +19,48 @@ import lombok.extern.slf4j.Slf4j;
 public class QrCodeUtil {
 
     /**
-     * Ä¬ÈÏ¶şÎ¬Âë´óĞ¡
+     * é»˜è®¤äºŒç»´ç å¤§å°
      */
     private static final Integer DEFAULT_SIZE = 200;
 
     /**
-     * Ä¬ÈÏ¶şÎ¬ÂëÍ¼Æ¬ÀàĞÍ£¨png/jpg/jepg...µÈ£©
+     * é»˜è®¤äºŒç»´ç å›¾ç‰‡ç±»å‹ï¼ˆpng/jpg/jepg...ç­‰ï¼‰
      */
     private static final String DEFAULT_TYPE = "png";
 
     /**
-     * Éú³Ébase64±àÂëºóµÄ¶şÎ¬ÂëĞÅÏ¢£¨Ä¬ÈÏ´óĞ¡¡¢Ä¬ÈÏÍ¼Æ¬ÀàĞÍ£©
+     * ç”Ÿæˆbase64ç¼–ç åçš„äºŒç»´ç ä¿¡æ¯ï¼ˆé»˜è®¤å¤§å°ã€é»˜è®¤å›¾ç‰‡ç±»å‹ï¼‰
      *
-     * @param content ¶şÎ¬ÂëÄÚÈİ
+     * @param content äºŒç»´ç å†…å®¹
      */
     public static String genQrCodeBase64(String content) {
         return AesUtil.base64Encode(genQrCode(content));
     }
 
     /**
-     * Éú³Ébase64±àÂëºóµÄ¶şÎ¬ÂëĞÅÏ¢£¨Ö¸¶¨¶şÎ¬Âë´óĞ¡ºÍÍ¼Æ¬ÀàĞÍ£©
+     * ç”Ÿæˆbase64ç¼–ç åçš„äºŒç»´ç ä¿¡æ¯ï¼ˆæŒ‡å®šäºŒç»´ç å¤§å°å’Œå›¾ç‰‡ç±»å‹ï¼‰
      *
-     * @param content ¶şÎ¬ÂëÄÚÈİ
+     * @param content äºŒç»´ç å†…å®¹
      */
     public static String genQrCodeBase64(int size, String format, String content) {
         return AesUtil.base64Encode(genQrCode(size, format, content));
     }
 
     /**
-     * Éú³É¶şÎ¬Âë£¨Ä¬ÈÏ´óĞ¡¡¢Ä¬ÈÏÍ¼Æ¬ÀàĞÍ£©
+     * ç”ŸæˆäºŒç»´ç ï¼ˆé»˜è®¤å¤§å°ã€é»˜è®¤å›¾ç‰‡ç±»å‹ï¼‰
      *
-     * @param content ¶şÎ¬ÂëÄÚÈİ
+     * @param content äºŒç»´ç å†…å®¹
      */
     private static byte[] genQrCode(String content) {
         return genQrCode(DEFAULT_SIZE, DEFAULT_TYPE, content);
     }
 
     /**
-     * Éú³É¶şÎ¬Âë×Ö½ÚÊı×é
+     * ç”ŸæˆäºŒç»´ç å­—èŠ‚æ•°ç»„
      *
-     * @param size ¶şÎ¬Âë´óĞ¡
-     * @param picType ¶şÎ¬ÂëÍ¼Æ¬ÀàĞÍ
-     * @param content ¶şÎ¬ÂëÄÚÈİ
+     * @param size äºŒç»´ç å¤§å°
+     * @param picType äºŒç»´ç å›¾ç‰‡ç±»å‹
+     * @param content äºŒç»´ç å†…å®¹
      */
     private static byte[] genQrCode(int size, String picType, String content) {
         byte[] qrCodeBytes = null;
@@ -73,13 +72,13 @@ public class QrCodeUtil {
     }
 
     /**
-     * Éú³É¶şÎ¬Âë²¢×ª»»Îª×Ö½ÚÊı×éÊä³öÁ÷
+     * ç”ŸæˆäºŒç»´ç å¹¶è½¬æ¢ä¸ºå­—èŠ‚æ•°ç»„è¾“å‡ºæµ
      */
     private static ByteArrayOutputStream genOrCodeToStream(int size, String picType, String content) {
         try {
             Map<EncodeHintType, Object> hints = new HashMap<>();
             hints.put(EncodeHintType.CHARACTER_SET, "utf-8");
-            //Éú³É¾ØÕó
+            //ç”ŸæˆçŸ©é˜µ
             BitMatrix bitMatrix = new MultiFormatWriter().encode(content, BarcodeFormat.QR_CODE, size, size, hints);
             ByteArrayOutputStream bout = new ByteArrayOutputStream();
             MatrixToImageWriter.writeToStream(bitMatrix, picType, bout);
@@ -91,13 +90,13 @@ public class QrCodeUtil {
     }
 
     /**
-     * ²âÊÔmain·½·¨
+     * æµ‹è¯•mainæ–¹æ³•
      */
     public static void main(String[] args) throws Exception {
-        //1.Éú³Ébase64±àÂëºóµÄ¶şÎ¬ÂëĞÅÏ¢£¬ĞèÒªÅäºÏ±êÇ©<img src="data:image/jpg;base64,base64QrCode"/>À´ÏÔÊ¾¸Ã¶şÎ¬ÂëÍ¼Æ¬
-        String base64QrCode = QrCodeUtil.genQrCodeBase64("ÖÜ¼Ñç÷³ÔÏèÁËÂğ?");
+        //1.ç”Ÿæˆbase64ç¼–ç åçš„äºŒç»´ç ä¿¡æ¯ï¼Œéœ€è¦é…åˆæ ‡ç­¾<img src="data:image/jpg;base64,base64QrCode"/>æ¥æ˜¾ç¤ºè¯¥äºŒç»´ç å›¾ç‰‡
+        String base64QrCode = QrCodeUtil.genQrCodeBase64("å‘¨ä½³çªåƒç¿”äº†å—?");
         log.info(base64QrCode);
-        //2.Éú³É¶şÎ¬ÂëÍ¼Æ¬£¬²¢±£´æµ½±¾µØÖ¸¶¨Ä¿Â¼
+        //2.ç”ŸæˆäºŒç»´ç å›¾ç‰‡ï¼Œå¹¶ä¿å­˜åˆ°æœ¬åœ°æŒ‡å®šç›®å½•
         byte[] qrCodeBytes = AesUtil.base64Decode(base64QrCode);
         if (Objects.nonNull(qrCodeBytes)) {
             try {
