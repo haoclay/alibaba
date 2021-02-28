@@ -3,6 +3,7 @@ server:
   servlet:
     context-path: /service3
 spring:
+
   application:
     name: service-3-server
   datasource:
@@ -22,7 +23,9 @@ spring:
         server-addr: localhost:8848,127.0.0.1:8849
         namespace: 434d8807-0a16-4291-a810-97bf0f92abfa
         cluster-name: DEFAULT
-
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
 dubbo:
   scan:
   #dubbo 服务扫描基准包
