@@ -84,7 +84,7 @@ public class QrCodeUtil {
             MatrixToImageWriter.writeToStream(bitMatrix, picType, bout);
             return bout;
         } catch (Exception e) {
-            log.error("genQrCode exception, e:", e);
+//            log.error("genQrCode exception, e:", e);
         }
         return null;
     }
@@ -94,8 +94,8 @@ public class QrCodeUtil {
      */
     public static void main(String[] args) throws Exception {
         //1.生成base64编码后的二维码信息，需要配合标签<img src="data:image/jpg;base64,base64QrCode"/>来显示该二维码图片
-        String base64QrCode = QrCodeUtil.genQrCodeBase64("周佳琪吃翔了吗?");
-        log.info(base64QrCode);
+        String base64QrCode = QrCodeUtil.genQrCodeBase64("http://192.168.0.200:55574/service-alipay/alipayTest");
+//        log.info(base64QrCode);
         //2.生成二维码图片，并保存到本地指定目录
         byte[] qrCodeBytes = AesUtil.base64Decode(base64QrCode);
         if (Objects.nonNull(qrCodeBytes)) {

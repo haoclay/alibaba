@@ -6,7 +6,7 @@ spring:
   cloud:
     nacos:
       config:
-        server-addr: localhost:8848,127.0.0.1:8849,localhost:8850
+        server-addr: localhost:8848,127.0.0.1:8849
         group: DEFAULT_GROUP
         namespace: 434d8807-0a16-4291-a810-97bf0f92abfa
         file-extension: properties

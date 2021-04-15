@@ -1,17 +1,11 @@
 server:
-  port: ${port:55573}
+  port: ${port:55574}
   servlet:
-    context-path: /service3
+    context-path: /service-alipay
 spring:
 
   application:
-    name: service-3-server
-  datasource:
-    type: com.alibaba.druid.pool.DruidDataSource
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/homework?characterEncoding=utf-8&useSSL=false&serverTimezone=GMT%2B8
-    username: root
-    password: haoclay
+    name: service-alipay
   cloud:
     nacos:
       config:
@@ -23,9 +17,9 @@ spring:
         server-addr: localhost:8848,127.0.0.1:8849
         namespace: 434d8807-0a16-4291-a810-97bf0f92abfa
         cluster-name: DEFAULT
-  thymeleaf:
-    prefix: classpath:/templates/
-    suffix: .html
+#  thymeleaf:
+#    prefix: classpath:/templates/
+#    suffix: .html
 dubbo:
   scan:
   #dubbo 服务扫描基准包
