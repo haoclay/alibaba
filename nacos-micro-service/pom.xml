@@ -18,6 +18,8 @@
         <module>api-gateway</module>
         <module>service-3</module>
         <module>service-alipay</module>
+        <module>springcloud-gateway</module>
+        <module>service-4</module>
     </modules>
 
 

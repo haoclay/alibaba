@@ -4,6 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <modules>
         <module>nacos-micro-service</module>
+        <module>interview</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

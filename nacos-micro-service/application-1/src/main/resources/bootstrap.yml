@@ -1,7 +1,7 @@
 server:
-  port: 55570
-  servlet:
-    context-path: /application1
+  port: 55500
+#  servlet:
+#    context-path: /application-1
 spring:
   application:
     name: application-1

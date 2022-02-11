@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>男孩给女孩送花(电脑版)-我要表白网-最浪漫的表白网页在线生成网站</title>
+    <meta name="keywords" content="免费表白网页在线生成制作,免费表白视频生成制作,情侣头像制作,表白图片,表白文章,表白网页,表白的话,表白,表白的句子,表白情书,怎么表白,520表白日,表白句子,表白的话感人的,表白的歌,表白情书大全,表白神器,如何表白,表白词,喜欢一个人怎么表白,向女生表白的话,表白墙,男子开车高校表白,表白的歌曲,对女生表白的话,表白信,表白方式,表白被拒绝怎么办,对男生表白的话,隐晦的表白,含蓄的表白,爱情表白,表白歌词,情人节表白,表白网,女生表白,适合表白的歌曲,表白失败,女生对男生表白的话,关于表白的句子,国际表白日,女生向男生表白,英文表白句子,男生对女生表白的话,爱的表白,创意表白,深情表白,向男生表白的话,表白吧,表白的话语,表白日,女性表白日,女生表白的话,表白的英文句子,表白怎么说,男性表白日,520表白,暗示表白,最感人的表白情书,说唱表白词"/>
+    <meta name="description" content="2014年7月25日成立。附有免费的表白网页一键式生成系统，精美简约的表白模版，可自定义加入图片音乐文字等内容。 
+永久保存您的表白信息，记录您和TA的故事。我们的口号是： 为爱情中得小惊喜而感动！       "/>
+    <link rel="icon" href="/static/home/images/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="/static/home/images/favicon.ico">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .layadmin-iframe {
+            width: 100vw;
+            height: calc(100vh - 50px);
+            overflow-x: auto;
+            border:none;
+        }
+    </style>
+
+</head>
+
+
+
+
+<!-- 主体 -->
+
+<script src="http://static.51bbw.cn/js/axios.min.js"></script>
+<script src="http://static.51bbw.cn/js/vue.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<link rel="stylesheet" href="http://static.51bbw.cn/css/make.css">
+
+<div id="set">
+    <!--<form id="webForm" target="iframe" method="post" action="" >-->
+    <!--    <input type="hidden" class="json" name="json" value="" >-->
+    <!--</form>-->
+    <iframe name="iframe" id="webForm"  v-if="!previewView"  class="layadmin-iframe"></iframe>
+
+
+    <div id="zzc" @click="zzcClick" v-show="iszzc"></div>
+
+        <div id="previewView" v-show="previewView">
+            <div class="header">
+                <div  style="text-align: left" @click="previewView=false;"><img style="width: 16px" src="//static.51bbw.cn/picture/make/left.png" alt=""></div>
+                <div style="text-align: center">预览</div>
+                <div style="text-align: right"  @click="showSubmitBtnClick"> <span>提交</span></div>
+            </div>
+            <form id="previewForm" target="previewIframe" method="post" action="" >
+                <input type="hidden" class="json" name="json" value="" >
+            </form>
+            <iframe name="previewIframe" v-if="previewView"  class="layadmin-iframe"></iframe>
+        </div>
+
+        <div id="bgmSelectList" v-show="musicSelectView"  style="overflow-y:scroll;">
+            
+            <div style="height: 105px;width: 100%;position: fixed;top: 0;background: #fff;">
+                
+                <div class="header">
+                <div  style="text-align: left" @click="musicSelectView=false;"><img style="width: 16px" src="//static.51bbw.cn/picture/make/left.png" alt=""></div>
+                <div style="text-align: center;font-weight: bolder" >背景音乐选择</div>
+                <div style="text-align: right" @click="bgmSave"></div>
+            </div>
+            <div class="bgmTypeList">
+                <ul class="typeUl">
+                    <li  :class="{ act:musicTypeIndex===0 }" @click="musicTypeBtnClick(0)">全部</li>
+                    <li :class="{ act:musicTypeIndex===item.id }" @click="musicTypeBtnClick(item.id)" v-for="(item,index) in musicData.type">{{item.title}}</li>
+                </ul>
+            </div>
+                
+                
+            </div>
+            
+            <div style="margin-top:120px;"></div>
+            
+            <div  v-show="musicTypeIndex===0"   class="noSetMusic" :class="{ act:data.bgm.type ==='noSetMusic' }"   @click="selectMusicBtnClick('noSetMusic')">不使用背景音乐</div>
+            <div v-show="musicTypeIndex===0"   class="uploadMusic" :class="{ act:data.bgm.type==='uploadMusic' }" @click="selectMusicBtnClick('uploadMusic')">上传本地音乐(mp3格式) <span v-show="data.bgm.type==='uploadMusic'&&data.bgm.url!=='uploadMusic'">音乐已上传,可直接保存</span> </div>
+            <div class="bgmMusicList">
+                <ul class="MusicUl">
+                    <li   :class="{ act:data.bgm.id===item.id&&data.bgm.type !=='noSetMusic' }" @click="selectMusicBtnClick(index)"  v-for="(item,index) in musicListData">{{item.title}}</li>
+                </ul>
+            </div>
+        </div>
+
+
+        <div id="TextAndImgList" v-show="TextAndImgList">
+                <div class="title">
+                    文字与图片
+                </div>
+            <div class="boxList">
+                <div  class="item textItem" @click="itemClick('text',index)" v-for="(item,index) in data.text" >{{item.content}}</div>
+                <div class="item imgItem" @click="itemClick('img',index)" v-for="(item,index) in data.img"><img :src="item.src" alt=""></div>
+            </div>
+        </div>
+
+        <div id="infoList" v-show="infoList">
+            <div class="title">
+                基本信息设置
+            </div>
+            <div class="boxList">
+                <div  class="item textItem" style=" vertical-align: top;"  @click="itemClick('info',index)" v-for="(item,index) in data.info" >
+                    <span v-if="item==='' && index ==='boyname' ">制作人姓名未设置</span>
+                    <span v-if="item==='' && index ==='girlname' ">对方姓名未设置</span>
+                    <span v-if="item==='' && index ==='tel' ">手机号码未设置</span>
+                    <span v-else>{{item}}</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="TextUpdate" v-show="isText">
+                <textarea v-model="textUpdateContent">{{textUpdateContent}}</textarea>
+            <div class="btn" @click="itemSubmitBtn">确定</div>
+        </div>
+        <div id="ImgUpdate" v-show="isImg">
+            <div class="title">
+                图片替换
+            </div>
+            <form name="imgForm" id="imgForm" enctype="multipart/form-data" action="图片上传接口" method='post'>
+                <input class="input-loc-img"  name="imgLocal" id="imgLocal" type='file' accept="image/*" @change="selectImg" v-model="ImgUpdateValue" />
+            </form>
+        </div>
+
+        <div id="BgmUpdate" v-show="isBgm" style="z-index:102;">
+            <div class="title">
+                本地音乐上传
+            </div>
+            <form name="BgmForm" id="BgmForm" enctype="multipart/form-data" action="本地上传接口" method='post'>
+                <input class="input-loc-img"  name="bgmLocal" id="bgmLocal"  type='file' accept="audio/*" @change="selectBgm"  />
+            </form>
+        </div>
+
+    <div id="makeMenu">
+        <ul>
+            <li @click="textAndImgBtnClick"><img style="width: 18px;height: 18px;" src="//static.51bbw.cn/picture/make/bianji.png" alt=""> <br> <span>文字/图片</span></li>
+            <li @click="infoBtnClick"><img style="width: 18px;height: 18px;" src="//static.51bbw.cn/picture/make/xinxi.png" alt=""> <br> <span>基本信息</span></li>
+            <li @click="bgmBtnclick"><img style="width: 18px;height: 18px;" src="//static.51bbw.cn/picture/make/yinyue.png" alt=""> <br> <span>背景音乐</span></li>
+<!--            <li @click="previewBtnClick"><img style="width: 18px;height: 18px;" src="//static.51bbw.cn/picture/make/yulan.png" alt=""> <br> <span>网页预览</span></li>-->
+            <li @click="showSubmitBtnClick" style="width: 34%"><div class="btn">确认提交</div> </li>
+        </ul>
+
+    </div>
+
+</div>
+
+
+<!-- 脚本 -->
+
+
+<script>
+    let set = new Vue({
+        el: '#set',
+        data: {
+            data:{
+                bgm:{
+                    type:''
+                }
+            },
+            iframeArr:{
+                json:'',
+                url:''
+            },
+            iszzc:false,//遮罩层
+            isText:false,//文字编辑框是否开启
+            isImg:false,//图片替换框是否开启
+            isBgm:false,//本地音乐上传是否开启
+            textUpdateContent:'',//文字编辑框里的内容
+            ImgUpdateValue:'',//图片input里的内容
+            TextAndImgList:false,//文字图片列表是否显示
+            infoList:false,//信息列表是是否显示
+            indexData:{'type':'','index':''},//储存当前编辑的内容
+            previewView:false,//预览界面是否显示
+            previewId:'',//预览id
+            musicSelectView:false,//选择音乐界面是否显示
+            musicData:{
+                type:[]
+            },//背景音乐数据
+            musicTypeIndex:0,//选中的音乐类型 默认0全部
+            musicListData:[],//用于展示现在选中的歌曲列表
+
+
+
+        },
+        created:function (){
+            const that = this ;
+
+            //请求网页配置内容
+           that.httpTempDefaultData();
+
+        },
+        methods: {
+            //数据请求
+           httpTempDefaultData:function (){
+               const that = this ;
+               axios.get('http://static.51bbw.cn/home/index/defaultdata/id/79')
+                   .then(function (response) {
+                       that.data = response.data;
+                       //设置窗口数据
+                       that.httpDataIframe();
+
+                       //设置标题
+                       document.title = '男孩给女孩送花(电脑版)-在线制作';
+
+                   })
+                   .catch(function (error) {
+                       console.log(error);
+                   });
+
+           },
+            //发送数据到iframe
+            httpDataIframe:function (){
+               // $('#webForm .json').val( JSON.stringify(this.data));
+               that = this;
+                axios.post('/api/updateTempData', {
+                    datajson:JSON.stringify(this.data),
+                    unique_id:'3bf6cdb568f8f4a6e8718c2dd3cfea3e'
+                })
+                    .then(function (res) {
+                        if(res.data.code){
+                           $('#webForm').attr('src', '//static.51bbw.cn/temp/'+that.data.type+'/iframe.php?time='+new Date().getTime()+'&id=3bf6cdb568f8f4a6e8718c2dd3cfea3e');
+                        }
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+                    
+               
+            },
+
+            /*
+            *确认提交按钮
+            * */
+            showSubmitBtnClick:function (){
+                if(this.data.info.boyname===''){alert('请设置基本信息内被制作人姓名');return false;}
+                if(this.data.info.girlname===''){alert('请设置基本信息内对方姓名');return false;}
+                if(this.data.info.tel===''){alert('请设置基本信息内手机号,为网页所属基本凭证');return false;}
+
+                axios.post('/home/index/showsubmits', {
+                    datajson:JSON.stringify(this.data),
+                    unique_id:'3bf6cdb568f8f4a6e8718c2dd3cfea3e',
+                    detailid:'79'
+
+                })
+                    .then(function (res) {
+                        if(res.data.code){
+                            if(res.data.data.type==='show'){
+                                window.location.href="/submit/"+res.data.data.id;
+                            }else if(res.data.data.type==='h5'){
+                                window.location.href=res.data.data.payurl;
+                            }
+                        }
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            },
+
+
+            selectBgm:function (){
+                let that=this;
+                let bgmFile = $(this.$el).find('#bgmLocal')[0].files[0];//取到上传的音频
+                let formData=new FormData();//通过formdata上传
+                formData.append('file',bgmFile);
+
+
+                axios.post('/home/api/uploadAudio',formData,{
+                    method: 'post',
+                    headers: {'Content-Type': 'multipart/form-data'}
+                }).then(function (res) {
+                    if(res.data.code){
+                        that.iszzc = false;
+                        that.isBgm = false;
+                        that.data.bgm.type = 'uploadMusic';
+                        that.data.bgm.id = res.data.data['id'];
+                        that.data.bgm.url = res.data.data['filepath']
+                        //设置窗口数据
+                        that.httpDataIframe();
+                        alert('上传成功');
+                    }else{
+                        alert(res.data.msg);
+                    }
+
+
+                }).catch(function(error){
+                    console.log(error);
+                })
+
+
+
+            },
+            // previewBtnClick:function (){
+            //     const that = this;
+            //     console.log(that.previewView);
+            //     that.previewView = true;
+            //     //$('#webForm').attr('action', '');
+            //     $('#previewForm .json').val( JSON.stringify(this.data));
+            //     $('#previewForm').attr('action', 'http://static.51bbw.cn/temp/'+this.data.type+'/iframe.php').submit();
+            // },
+            selectImg:function (){
+                let that=this;
+                let imgFile = $(this.$el).find('#imgLocal')[0].files[0];//取到上传的图片
+                let formData=new FormData();//通过formdata上传
+                formData.append('file',imgFile);
+
+
+                axios.post('/home/api/upload',formData,{
+                    method: 'post',
+                    headers: {'Content-Type': 'multipart/form-data'}
+                }).then(function (res) {
+                    if(res.data.code){
+                        const imgPath = res.data.data['filepath'];
+                        that.data.img[that.indexData.index].src = imgPath;
+                        that.httpDataIframe();
+                        that.iszzc=false;
+                        that.isImg=false;
+
+                    }else{
+                        alert(res.data.msg);
+                    }
+
+                }).catch(function(error){
+                    console.log(error);
+                })
+
+
+
+            },
+            itemSubmitBtn:function (){
+
+                if(this.indexData.type==='text'){
+                    this.data.text[this.indexData.index].content  = this.textUpdateContent;
+                }else{
+                    this.data.info[this.indexData.index] =  this.textUpdateContent;
+                }
+
+                this.httpDataIframe();
+                this.zzcClick();
+
+            },
+            itemClick:function (type,index){
+                if (type==='text'){
+                    this.textUpdateContent = '';
+                    this.setTextUpdate(type,index);
+                }else if(type==='img'){
+                    this.setImgUpdate(type,index);
+                }else{
+                 this.textUpdateContent = '';
+                    this.setTextUpdate(type,index);
+                }
+            },
+            setImgUpdate:function (type,index){
+                this.ImgUpdateValue = '';
+                this.indexData.type = type;
+                this.indexData.index = index;
+                this.TextAndImgList =false;
+                this.iszzc = true;
+                this.isImg=true;
+
+            },
+            setTextUpdate:function (type,index){
+                this.indexData.type = type;
+                this.indexData.index = index;
+                this.TextAndImgList =false;
+                this.infoList =false;
+                this.iszzc = true;
+                this.textUpdateContent = type==='text' ? this.data.text[index].content : this.data.info[index] ;
+                this.isText=true;
+
+            },
+            zzcClick:function (){
+                this.iszzc = false;
+                this.isText = false;
+                this.isImg = false;
+                this.isBgm = false;
+                this.infoList =false;
+                this.TextAndImgList = false;
+                this.textUpdateContent = '';
+                this.indexData={'type':'','index':''};
+            },
+            //获取不同类型的音乐
+            selectDataMusic:function (id){
+                 if(this.musicListData.length!=0){return false;}
+                    if(id===0){
+                        for (let i=0;i<this.musicData.music.length;i++){
+                            this.musicListData.push(this.musicData.music[i]);
+                        }
+                        console.log(this.musicListData);
+
+                    }else{
+                        for (let i=0;i<this.musicData.music.length;i++){
+                            if(id===this.musicData.music[i].music_cate_id){
+                                this.musicListData.push(this.musicData.music[i]);
+                            }
+
+                        }
+                    }
+
+
+            },
+            selectMusicBtnClick:function (type){
+
+                if(type===this.data.bgm.type){return false;}
+                if(type==='noSetMusic'){
+                    this.data.bgm.type ='noSetMusic';
+                    this.data.bgm.url = 'noSetMusic';
+
+                }else if(type==='uploadMusic'){
+                    this.iszzc=true;
+                    this.isBgm=true;
+                    return false;
+                }else {
+                    this.data.bgm.type = 'defaultMusic';
+                    this.data.bgm.url =this.musicListData[type].filepath;
+                    this.data.bgm.id = this.musicListData[type].id;
+               }
+
+                this.httpDataIframe();
+
+            },
+            //音乐选择界面 保存按钮
+            bgmSave:function (){
+            },
+            //切换音乐分类
+            musicTypeBtnClick:function (id){
+                //防止点击重复栏目
+                if(this.musicTypeIndex===id){return false;}
+                //记录切换的分类
+                this.musicTypeIndex=id;
+                //清空展示数组中的原分类音乐
+                this.musicListData=[];
+                //添加展示数组中的新分类音乐
+                this.selectDataMusic(id);
+
+
+            },
+            infoBtnClick:function (){
+                this.iszzc = true;
+                this.infoList = true;
+                this.textUpdateContent='';
+            },
+            bgmBtnclick:function (){
+                const  that = this;
+                that.musicSelectView=true;
+                axios.post('/home/api/ViewMusic',{
+                    method: 'post',
+                    headers: {'Content-Type': 'multipart/form-data'}
+                }).then(function (res) {
+                    if(res.data.code){
+                        that.musicData = res.data.data;
+
+                        that.selectDataMusic(0);
+                    }else{
+                        alert(res.data.msg);
+                    }
+                }).catch(function(error){
+                    console.log(error);
+                })
+
+            },
+            textAndImgBtnClick:function (){
+                this.iszzc = true;
+                this.TextAndImgList = true;
+                //console.log(data);
+            }
+        }
+    })
+</script>
+<script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
+<script>LA.init({id: "JWbGzSL1tcZPvoS8",ck: "JWbGzSL1tcZPvoS8"})</script>
+<script src="https://sdk.51.la/perf/js-sdk-perf.min.js" crossorigin="anonymous"></script>
+<script>new LingQue.Monitor().init({id:"JWbKLU63Tvnr66QA"});</script>
+
+</body>
+</html>
+
+
+<!-- /脚本 -->

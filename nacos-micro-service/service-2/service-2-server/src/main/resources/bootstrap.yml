@@ -1,5 +1,5 @@
 server:
-  port: ${port:55572}
+  port: ${port:55522}
   servlet:
     context-path: /service2
 spring:
@@ -10,7 +10,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/homework?characterEncoding=utf-8&useSSL=false&serverTimezone=GMT%2B8
     username: root
-    password: haoclay
+    password: 123456
   cloud:
     nacos:
       config:

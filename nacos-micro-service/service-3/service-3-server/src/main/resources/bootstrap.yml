@@ -1,5 +1,5 @@
 server:
-  port: ${port:55573}
+  port: ${port:55533}
   servlet:
     context-path: /service3
 spring:
@@ -11,7 +11,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/homework?characterEncoding=utf-8&useSSL=false&serverTimezone=GMT%2B8
     username: root
-    password: haoclay
+    password: 123456
   cloud:
     nacos:
       config:
@@ -34,7 +34,7 @@ dubbo:
   #dubbo协议
     name: dubbo
   #dubbo协议端口
-    port: ${dubbo_port:20883}
+    port: ${dubbo_port:20813}
   registry:
     address: nacos://127.0.0.1:8848,127.0.0.1:8849
   application:

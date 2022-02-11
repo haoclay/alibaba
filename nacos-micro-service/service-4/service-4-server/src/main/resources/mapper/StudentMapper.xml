@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sgq.mapper.StudentMapper">
+    <resultMap id="BaseMap" type="com.sgq.pojo.Student">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="clazz" property="clazz" jdbcType="VARCHAR"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="phone" property="phone" jdbcType="VARCHAR"/>
+        <result column="state" property="state" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="all">
+        id,
+        clazz,
+        name,
+        phone,
+        state
+    </sql>
+    <sql id="table">
+        student
+    </sql>
+
+
+    <select id="selectByLike" resultMap="BaseMap" parameterType="java.util.Map">
+        select <include refid="all"/>
+        from <include refid="table"/> s
+        <where>
+              1=1
+             <if test="clazz!=null"> and s.phone=#{clazz}</if>
+             <if test="name!=null">and s.name like  CONCAT('%', #{name},'%')</if>
+             <if test="phone!=null">and s.phone=#{phone}</if>
+             <if test="state!=null">and s.state=#{state}</if>
+
+        </where>
+
+    </select>
+</mapper>

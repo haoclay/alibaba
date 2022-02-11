@@ -45,11 +45,11 @@ public class SendMail {
         Session session = Session.getDefaultInstance(properties, new Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(host_mail,"azwzwwiazuladdgf");
+                return new PasswordAuthentication(host_mail,"csdqqmyqqdzbcada");
             }
         });
         Transport transport =session.getTransport();
-        transport.connect("smtp.qq.com",host_mail,"azwzwwiazuladdgf");
+        transport.connect("smtp.qq.com",host_mail,"csdqqmyqqdzbcada");
         Message message = new MimeMessage(session);
         message.setFrom(new InternetAddress(host_mail));
         message.setRecipient(Message.RecipientType.TO,new InternetAddress(mailMap.get("mail_target")));

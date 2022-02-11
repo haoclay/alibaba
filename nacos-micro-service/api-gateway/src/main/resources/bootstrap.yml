@@ -1,5 +1,5 @@
 server:
-  port: 55580
+  port: 55599
 spring:
   http:
     encoding:
@@ -21,3 +21,14 @@ spring:
         server-addr: localhost:8848,127.0.0.1:8849
         namespace: 434d8807-0a16-4291-a810-97bf0f92abfa
         cluster-name: DEFAULT
+
+
+#    zuul:
+#      routes:
+#        api-a:
+#          path: /api-user/**
+#          service-id: service-provider
+#          sensitive-headers:
+#        api-b:
+#          path: /api-order/**
+#          service-id: service-consumer

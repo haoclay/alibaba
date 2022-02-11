@@ -30,7 +30,7 @@ public class AesUtil {
         try {
             return aesEncrypt(content, KEY);
         } catch (Exception e) {
-            log.error(e.getMessage(), e);
+//            log.error(e.getMessage(), e);
             return "";
         }
     }
@@ -45,7 +45,7 @@ public class AesUtil {
         try {
             return aesDecrypt(encrypt, KEY);
         } catch (Exception e) {
-            log.error(e.getMessage(), e);
+//            log.error(e.getMessage(), e);
             return "";
         }
     }
@@ -132,8 +132,8 @@ public class AesUtil {
         String content = "关注微信公众号：IT特靠谱";
         String encrypt = aesEncrypt(content, KEY);
         String decrypt = aesDecrypt(encrypt, KEY);
-        log.info("AES加密前：{}", content);
-        log.info("AES加密后：{}", encrypt);
-        log.info("AES解密后：{}", decrypt);
+//        log.info("AES加密前：{}", content);
+//        log.info("AES加密后：{}", encrypt);
+//        log.info("AES解密后：{}", decrypt);
     }
 }
