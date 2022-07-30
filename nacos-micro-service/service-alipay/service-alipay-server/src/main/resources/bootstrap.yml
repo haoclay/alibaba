@@ -1,7 +1,7 @@
 server:
   port: ${port:55574}
   servlet:
-    context-path: /service-alipay
+      context-path: /service-alipay
 spring:
 
   application:

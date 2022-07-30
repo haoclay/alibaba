@@ -35,8 +35,8 @@ public class AlipayController {
        AlipayTradeWapPayRequest request = new AlipayTradeWapPayRequest();
        request.setBizContent("{" +
                "\"out_trade_no\":\"20150320010101001\"," +
-               "\"total_amount\":88.88," +
-               "\"subject\":\"Iphone6 16G\"," +
+               "\"total_amount\":\"188888\"," +
+               "\"subject\":\"学以致用\"," +
                "\"product_code\":\"QUICK_WAP_PAY\" " +
                "  }");
        String form = "";

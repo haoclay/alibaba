@@ -4,8 +4,10 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 		<title>登录/注册</title>
+		<link href="http://localhost:55533/service3/message/img/bear.ico" rel="icon" />
 		<meta name="keywords" content="">
 		<meta name="description" content="">
+
 		<script src="message/js/rem.js"></script>
 		<script src="message/js/jquery.min.js" type="text/javascript"></script>
 		<link rel="stylesheet" type="text/css" href="message/css/bootstrap.min.css" />
@@ -133,7 +135,8 @@
 				// contentType: 'application/json;charset=UTF-8', //请求数据类型
 				dataType:'json',  //返回数据类型 如果后端返回一个消息对象 这里为json
 				success:function (data) {
-					alert(data);
+					var result = JSON.stringify(data);
+					alert(result);
 				}
 			})
 		})

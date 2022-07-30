@@ -1,6 +1,5 @@
 package com.sgq.controller;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.sgq.api.IEmailService;
 import org.apache.dubbo.config.annotation.Reference;
