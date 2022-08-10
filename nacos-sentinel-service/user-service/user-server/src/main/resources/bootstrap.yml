@@ -1,0 +1,42 @@
+dubbo:
+  application:
+    qos-enable: false
+  consumer:
+    check: false
+  protocol:
+    name: dubbo
+    port: ${dubbo_port:20814}
+  registry:
+    address: nacos://127.0.0.1:8848,127.0.0.1:8849
+  scan:
+    base-packages: com.sgq.service
+mybatis-plus:
+  mapper-locations: classpath:/mapping/*.xml
+server:
+  port: ${port:8801}
+  servlet:
+    context-path: /user-service
+
+spring:
+  application:
+    name: user-service
+  cloud:
+    nacos:
+      config:
+        file-extension: yaml
+        group: NACOS-SENTINEL
+        namespace: 8823d91b-4318-4c4a-a06e-9ecde7d31c9b
+        server-addr: localhost:8848,127.0.0.1:8849
+      discovery:
+        cluster-name: DEFAULT
+        namespace: 8823d91b-4318-4c4a-a06e-9ecde7d31c9b
+        server-addr: localhost:8848,127.0.0.1:8849
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://47.114.73.72:3306/nacos-sentinel-service?serverTimezone=GMT%2B8
+    username: root
+    password: haoclay
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html

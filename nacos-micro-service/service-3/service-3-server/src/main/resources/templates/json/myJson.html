@@ -11,6 +11,7 @@
 <input type="button" id="btn1" value="提交RequestBody非满参 Object">
 <input type="button" id="btn2" value="提交 RequestParam">
 <input type="button" id="btn3" value="提交RequestBody满参&非满参 List">
+<input type="button" id="btn4" value="提交RequestBody满参&非满参 List">
 
 <form action="json/getFormData" method="post" >
     <input type="text" name="id" value="1"/>
@@ -28,6 +29,7 @@
         methodGet();
         f3();
         f4();
+        f5();
     });
 //结论requestBody
     function methodPost() {
@@ -94,7 +96,28 @@
                 contentType: 'application/json;charset=UTF-8', //请求数据类型
                 dataType:'json',  //返回数据类型 如果后端返回一个消息对象 这里为json
                 success:function (data) {
-                 alert(data.staffs)
+                 alert(data.staffs[0].name)
+                }
+            })
+        })
+    }
+
+
+    function f5() {
+        var arr = [{"id":33 ,"name":"张三1","createDate":"2022-11-11 11:11:11"},
+            {"id":55 ,"name":"张三3","createDate":""},
+            {"id":44 ,"name":"张三2"}
+        ]
+        $('#btn4').click(function () {
+            $.ajax({
+                url: 'json/getStaffList',
+                type: 'post',
+                data: JSON.stringify(arr),
+                contentType: 'application/json;charset=UTF-8', //请求数据类型
+                dataType:'json',  //返回数据类型 如果后端返回一个消息对象 这里为json
+                success:function (data) {
+                    alert(JSON.stringify(data));
+                    alert(data[0].name);
                 }
             })
         })

@@ -1,0 +1,28 @@
+server:
+    port: 8080 #端口
+spring:
+    application:
+        name: sentinel-service
+    cloud:
+        sentinel:
+            transport:
+                #配置 Sentinel dashboard 地址
+                dashboard: 127.0.0.1:8858
+
+    thymeleaf:
+        cache: true
+        check-template: true
+        check-template-location: true
+        content-type: text/html
+        enabled: true
+        encoding: UTF-8
+        excluded-view-names: ''
+        mode: HTML5
+        prefix: classpath:/templates/
+        suffix: .html
+
+management:
+    endpoints:
+        web:
+            exposure:
+                include: '*'

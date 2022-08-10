@@ -5,9 +5,11 @@ import com.sgq.pojo.Staff;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @RestController
 public class JsonController {
@@ -56,6 +58,13 @@ public class JsonController {
             put("staff",staff);
         }};
         return map;
+    }
+
+    @RequestMapping("/json/getStaffList")
+    public List<Staff> getStaffList(@RequestBody List<Staff> staffs){
+        System.out.println(staffs);
+       return staffs.stream().sorted(Comparator.comparing(Staff::getId)).collect(Collectors.toList());
+
     }
 
     @RequestMapping("/jsonPage")

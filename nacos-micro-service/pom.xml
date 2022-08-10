@@ -20,6 +20,7 @@
         <module>service-alipay</module>
         <module>springcloud-gateway</module>
         <module>service-4</module>
+        <module>nacos-test</module>
     </modules>
 
 
