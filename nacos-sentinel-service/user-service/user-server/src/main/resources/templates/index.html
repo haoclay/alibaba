@@ -29,20 +29,20 @@
        <a id="logout" class="hvr-fade button" href="logout" sec:authorize="!isAnonymous()">注销</a>
          <div style="margin-left: 30%;">
              <ul class="bt-list">
-                 <li sec:authorize="hasAnyAuthority('vip1')">
-                     <a href="level1/1" class="hvr-back-pulse button">level1-1</a></p>
-                     <a href="level1/2" class="hvr-back-pulse button">level1-2</a></p>
-                     <a href="level1/3" class="hvr-back-pulse button">level1-3</a></p>
+                 <li sec:authorize="hasAnyAuthority('goods')">
+                     <a th:href="@{goods/cart}" class="hvr-back-pulse button">goods-cart</a></p>
+                     <a th:href="@{goods/index}" class="hvr-back-pulse button">goods-index</a></p>
+                     <a th:href="@{goods/orderform}" class="hvr-back-pulse button">goods-orderform</a></p>
                  </li>
-                 <li sec:authorize="hasAnyAuthority('vip2')">
-                     <a th:href="@{level2/1}" class="hvr-sweep-to-right button">level2-1</a></p>
-                     <a th:href="@{level2/2}" class="hvr-sweep-to-right button">level2-2</a></p>
-                     <a th:href="@{level2/3}" class="hvr-sweep-to-right button">level2-3</a></p>
+                 <li sec:authorize="hasAnyAuthority('user')">
+                     <a th:href="@{user/1}" class="hvr-sweep-to-right button">user-1</a></p>
+                     <a th:href="@{user/2}" class="hvr-sweep-to-right button">user-2</a></p>
+                     <a th:href="@{user/3}" class="hvr-sweep-to-right button">user-3</a></p>
                  </li>
-                 <li sec:authorize="hasAnyAuthority('vip3')">
-                     <a th:href="@{level3/1}" class="hvr-sweep-to-left button">level3-1</a></p>
-                     <a th:href="@{level3/2}" class="hvr-sweep-to-left button">level3-2</a></p>
-                     <a th:href="@{level3/3}" class="hvr-sweep-to-left button">level3-3</a></p>
+                 <li sec:authorize="hasAnyAuthority('integration')">
+                     <a th:href="@{integration/1}" class="hvr-sweep-to-left button">integration-1</a></p>
+                     <a th:href="@{integration/2}" class="hvr-sweep-to-left button">integration-2</a></p>
+                     <a th:href="@{integration/3}" class="hvr-sweep-to-left button">integration-3</a></p>
                  </li>
              </ul>
          </div>

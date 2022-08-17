@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html  xmlns:th="http://www.thymeleaf.org"
+       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <title>购物车</title>
+    <link href="/user-service/js/message/css/style.css" rel='stylesheet' type='text/css' />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8   " />
+    <meta charset="UTF-8">
+</head>
+<body>
+<h1 style="text-align: center">cart</h1>
+
+<div style="margin-left: 30%;">
+    <ul class="bt-list">
+        <li sec:authorize="hasAnyAuthority('goods')">
+            <a th:href="@{cart/add}" class="hvr-back-pulse button">goods-cart-add</a></p>
+            <a th:href="@{cart/remove}" class="hvr-back-pulse button">goods-cart-remove</a></p>
+            <a th:href="@{cart/alter}" class="hvr-back-pulse button">goods-cart-alter</a></p>
+            <a th:href="@{cart/show}" class="hvr-back-pulse button">goods-cart-show</a></p>
+        </li>
+    </ul>
+</div>
+</body>
+</html>

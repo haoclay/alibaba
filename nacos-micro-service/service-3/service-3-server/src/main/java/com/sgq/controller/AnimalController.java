@@ -1,6 +1,6 @@
 package com.sgq.controller;
 
-import com.sgq.api.IAnimalService;
+import com.sgq.service.IAnimalService;
 import com.sgq.pojo.Animal;
 import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.web.bind.annotation.GetMapping;

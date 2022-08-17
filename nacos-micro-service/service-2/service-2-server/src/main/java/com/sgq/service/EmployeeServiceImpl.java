@@ -1,6 +1,5 @@
 package com.sgq.service;
 
-import com.sgq.api.IEmployeeService;
 import com.sgq.dao.EmployeeMapper;
 import com.sgq.pojo.Employee;
 import org.apache.ibatis.annotations.Param;

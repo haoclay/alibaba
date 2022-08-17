@@ -1,6 +1,6 @@
 package com.sgq.controller;
 
-import com.sgq.api.ISysUserService;
+import com.sgq.service.ISysUserService;
 import com.sgq.pojo.SysUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -26,10 +26,7 @@ public class JumpPageController {
     private BCryptPasswordEncoder passwordEncoder;
 
 
-    @RequestMapping({"/","/index"})
-    public String index(){
-        return "index";
-    }
+
 
     @PostMapping("/register")
     public String register(@RequestBody SysUser sysUser){

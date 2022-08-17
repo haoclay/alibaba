@@ -1,7 +1,5 @@
 package com.sgq.service;
 
-import com.sgq.api.IAlipay;
-
 /**
  * Created by IntelliJ IDEA.
  *

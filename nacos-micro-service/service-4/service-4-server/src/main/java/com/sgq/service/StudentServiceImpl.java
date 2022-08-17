@@ -1,6 +1,5 @@
 package com.sgq.service;
 
-import com.sgq.api.IStudentService;
 import com.sgq.mapper.StudentMapper;
 import com.sgq.pojo.Student;
 import org.apache.dubbo.config.annotation.Service;

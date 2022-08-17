@@ -1,7 +1,5 @@
 package com.sgq.service;
 
-import com.sgq.api.IAnimalService;
-import com.sgq.api.ThirdService;
 import com.sgq.pojo.Animal;
 import org.apache.dubbo.config.annotation.Reference;
 import org.apache.dubbo.config.annotation.Service;

@@ -1,7 +1,7 @@
 package com.sgq.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.sgq.api.IEmailService;
+import com.sgq.service.IEmailService;
 import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;

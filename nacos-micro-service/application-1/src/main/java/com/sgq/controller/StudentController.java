@@ -1,6 +1,6 @@
 package com.sgq.controller;
 
-import com.sgq.api.IStudentService;
+import com.sgq.service.IStudentService;
 import com.sgq.pojo.Student;
 import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.web.bind.annotation.*;

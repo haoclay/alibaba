@@ -1,0 +1,24 @@
+server:
+  port: 9000
+  servlet:
+    context-path: /gateway-service
+spring:
+    application:
+            name:
+                gateway-servie
+    cloud:
+      #gateway的配置
+      gateway:
+      #路由规则
+        routes:
+          - id: user_route #路由的唯一标识，路由到order
+            uri: http://localhost:8801  # 需要转发的地址
+            #断言规则用于路由规则的匹配
+            predicates:
+              - Path=/user-service/**
+                #http://localhost:9000/user-service/index 路由到 ↓
+                #http://localhost:8801/user-service/index
+#            filters:
+#              - StripPrefix=1
+              #转发之前去掉第一层路径
+              # http://localhost:8801/index

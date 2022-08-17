@@ -2,10 +2,10 @@ package com.sgq.controller;
 
 
 
-import com.sgq.api.FirstService;
-import com.sgq.api.FourthService;
-import com.sgq.api.SecondService;
-import com.sgq.api.ThirdService;
+import com.sgq.service.FirstService;
+import com.sgq.service.FourthService;
+import com.sgq.service.SecondService;
+import com.sgq.service.ThirdService;
 import com.sgq.pojo.Animal;
 import com.sgq.pojo.Employee;
 import org.apache.dubbo.config.annotation.Reference;
@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 import java.util.List;

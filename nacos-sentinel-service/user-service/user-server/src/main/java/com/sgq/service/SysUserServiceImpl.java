@@ -1,7 +1,6 @@
 package com.sgq.service;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.sgq.api.ISysUserService;
 import com.sgq.mapper.SysRoleMapper;
 import com.sgq.mapper.SysUserMapper;
 import com.sgq.pojo.SysRole;

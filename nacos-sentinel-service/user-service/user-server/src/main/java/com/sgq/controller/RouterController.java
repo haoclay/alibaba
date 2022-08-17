@@ -12,16 +12,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class RouterController {
 
 
-    @RequestMapping({"/level1/{id}"})
-    public String level1(@PathVariable("id") Integer id){
-        return "views/level1/"+id;
+    @RequestMapping({"/goods/{pageName}"})
+    public String goods(@PathVariable("pageName") String pageName){
+        return "views/goods/"+pageName;
     }
-    @RequestMapping({"/level2/{id}"})
-    public String level2(@PathVariable("id") Integer id){
-        return "views/level2/"+id;
+    @RequestMapping({"/user/{pageName}"})
+    public String user(@PathVariable("pageName") String pageName){
+        return "views/user/"+pageName;
     }
-    @RequestMapping({"/level3/{id}"})
-    public String level3(@PathVariable("id") Integer id){
-        return "views/level3/"+id;
+    @RequestMapping({"/integration/{pageName}"})
+    public String integration(@PathVariable("pageName") String pageName){
+        return "views/integration/"+pageName;
     }
 }

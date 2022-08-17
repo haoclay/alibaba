@@ -1,6 +1,5 @@
 package com.sgq.service;
 
-import com.sgq.api.IEmailService;
 import com.sgq.util.SendMail;
 
 import javax.mail.MessagingException;

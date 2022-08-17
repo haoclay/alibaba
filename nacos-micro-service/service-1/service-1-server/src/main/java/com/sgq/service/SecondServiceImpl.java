@@ -1,7 +1,5 @@
 package com.sgq.service;
 
-import com.sgq.api.IEmployeeService;
-import com.sgq.api.SecondService;
 import com.sgq.pojo.Employee;
 import org.apache.dubbo.config.annotation.Reference;
 
