@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  **/
 @Controller
 public class RouterController {
-
+   private int count = 0 ;
 
     @RequestMapping({"/goods/{pageName}"})
     public String goods(@PathVariable("pageName") String pageName){
@@ -18,6 +18,8 @@ public class RouterController {
     }
     @RequestMapping({"/user/{pageName}"})
     public String user(@PathVariable("pageName") String pageName){
+        count++;
+        System.out.println("《"+pageName+"》在跑起来---->"+count);
         return "views/user/"+pageName;
     }
     @RequestMapping({"/integration/{pageName}"})

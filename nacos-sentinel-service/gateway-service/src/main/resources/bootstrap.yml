@@ -1,3 +1,18 @@
+dubbo:
+  application:
+    qos-enable: false
+  consumer:
+    check: false
+  protocol:
+    name: dubbo
+    port: ${dubbo_port:20828}
+  registry:
+    address: nacos://127.0.0.1:8848,127.0.0.1:8849
+  scan:
+    base-packages: com.sgq.service
+mybatis-plus:
+  mapper-locations: classpath:/mapping/*.xml
+
 server:
   port: 9000
   servlet:
@@ -7,18 +22,45 @@ spring:
             name:
                 gateway-servie
     cloud:
+      nacos:
+        config:
+          file-extension: yaml
+          group: NACOS-SENTINEL
+          namespace: 8823d91b-4318-4c4a-a06e-9ecde7d31c9b
+          server-addr: localhost:8848,127.0.0.1:8849
+          refresh-enabled: true
+          enable-remote-sync-config: true
+        discovery:
+          cluster-name: DEFAULT
+          namespace: 8823d91b-4318-4c4a-a06e-9ecde7d31c9b
+          server-addr: localhost:8848,127.0.0.1:8849
       #gateway的配置
       gateway:
       #路由规则
+        discovery:
+          locator:
+            enabled: false  #关闭自动路由功能(此时可以关闭)
         routes:
-          - id: user_route #路由的唯一标识，路由到order
-            uri: http://localhost:8801  # 需要转发的地址
+          - id: user-service #路由的唯一标识，路由到order
+            uri: lb://user-service  # 需要转发的服务名
             #断言规则用于路由规则的匹配
             predicates:
-              - Path=/user-service/**
-                #http://localhost:9000/user-service/index 路由到 ↓
-                #http://localhost:8801/user-service/index
-#            filters:
+              - Path=/user/**
+                #http://localhost:9000/user/index 路由到 ↓
+                #http://localhost:8801/user/index
+            filters:
+             - StripPrefix=1
+                #http://localhost:8801/index
+          - id: goods-service
+            uri: lb://goods-service
+            predicates:
+              - Path=/goods/{id},/goods/**
+              - After=2000-12-31T23:59:59.789+08:00[Asia/Shanghai]
+              - Header=X-Request-Id,\d+
+              - Method=POST
+              - Query=name,SGQ|DD
+              - Dynasty=dynasty,夏|商|周|汉|晋|隋|唐|宋|元|明|清
+            filters:
 #              - StripPrefix=1
-              #转发之前去掉第一层路径
-              # http://localhost:8801/index
+
+

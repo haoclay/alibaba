@@ -5,7 +5,7 @@ dubbo:
     check: false
   protocol:
     name: dubbo
-    port: ${dubbo_port:20814}
+    port: ${dubbo_port:20827}
   registry:
     address: nacos://127.0.0.1:8848,127.0.0.1:8849
   scan:
@@ -13,9 +13,9 @@ dubbo:
 mybatis-plus:
   mapper-locations: classpath:/mapping/*.xml
 server:
-  port: ${port:8802}
-  servlet:
-    context-path: /goods-service
+  port: ${port:8822}
+#  servlet:
+#    context-path: /goods-service
 
 spring:
   application:
